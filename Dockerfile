@@ -19,7 +19,7 @@ ARG TERRAFORM_VERSION=1.3.0
 
 ENV ENV_TERRAFORM_VERSION=$TERRAFORM_VERSION
 
-RUN apt-get update && \
+RUN apt-get update && apt-get install ca-certificates && \
     /builder/google-cloud-sdk/bin/gcloud -q components install alpha beta terraform-tools && \
     apt-get -y install curl jq unzip git ca-certificates gnupg && \
     curl https://releases.hashicorp.com/terraform/${ENV_TERRAFORM_VERSION}/terraform_${ENV_TERRAFORM_VERSION}_linux_amd64.zip --output terraform_${ENV_TERRAFORM_VERSION}_linux_amd64.zip && \
